@@ -1,0 +1,13 @@
+ Send to single device.
+from pyfcm import FCMNotification
+import time
+
+localtime = time.asctime( time.localtime(time.time()) );
+push_service = FCMNotification(api_key="YOUR API KEY")
+
+
+registration_id =  "YOUR REGISTRATION ID"
+message_title = "Your Title"
+message_body = ( "CURRENT TIME " +localtime)
+
+result = push_service.notify_single_device(registration_id=registration_id, message_title=message_title, message_body=message_body)

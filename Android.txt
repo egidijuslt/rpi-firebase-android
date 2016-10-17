@@ -1,0 +1,20 @@
+public class MyFirebaseinstanceIDService extends FirebaseInstanceIdService {
+
+    private static final String TAG = "MyFirebaseInsIDService";
+
+    @Override
+    public void onTokenRefresh() {
+        //refresh token
+        String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+        Log.d(TAG, "New Token:" + refreshedToken);
+
+        registerToken(refreshedToken);
+    }
+
+    private void registerToken(String refreshedToken) {
+
+        Firebase myFirebaseRef = new Firebase("https://YOUR_app_ID.firebaseio.com/");
+        myFirebaseRef.child("message").setValue("New Token:" + refreshedToken);
+
+    }
+}
